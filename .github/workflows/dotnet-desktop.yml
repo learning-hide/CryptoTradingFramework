@@ -50,7 +50,7 @@ jobs:
 
     strategy:
       matrix:
-        configuration: [Debug, Release]
+        configuration: [Release]
 
     runs-on: windows-2019  # For a list of available runner types, refer to
 
@@ -70,7 +70,7 @@ jobs:
 
     # Create the app package by building and packaging the Windows Application Packaging project
     - name: Create the app package
-      run: msbuild CryptoMarketClient.sln
+      run: msbuild CryptoMarketClient.sln -t:restore,build -p:RestorePackagesConfig=true
 
     # Upload the MSIX package: https://github.com/marketplace/actions/upload-a-build-artifact
     - name: Upload build artifacts
